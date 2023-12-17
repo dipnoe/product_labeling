@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<odoo>
+
+    <menuitem id="menu_root"
+              name="Product Labeling"/>
+
+    <menuitem id="submenu_product"
+              name="Products"
+              parent="menu_root"
+              action="action_product_form"/>
+
+    <menuitem id="submenu_act"
+              name="Create act"
+              parent="menu_root"
+              action="action_act_form"/>
+
+</odoo>

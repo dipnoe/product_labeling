@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <data>
+
+        <record id="view_product_form" model="ir.ui.view">
+            <field name="name">product_labeling.product.form</field>
+            <field name="model">product_labeling.product</field>
+            <field name="arch" type="xml">
+                <form string="Product">
+                    <header>
+                        <button string="Confirm" type="object" name="confirm_create" class="button btn-success"/>
+                    </header>
+                    <sheet>
+                        <group>
+                            <field name="name">Наименование</field>
+                            <field name="description">Текстовое описание</field>
+                        </group>
+                    </sheet>
+                </form>
+            </field>
+        </record>
+
+        <record id="view_product_tree" model="ir.ui.view">
+            <field name="name">product_labeling.product.tree</field>
+            <field name="model">product_labeling.product</field>
+            <field name="arch" type="xml">
+                <tree string="Products">
+                    <field name="name"/>
+                    <field name="description"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="action_product_form" model="ir.actions.act_window">
+            <field name="name">Товары</field>
+            <field name="res_model">product_labeling.product</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+    </data>
+
+</odoo>
