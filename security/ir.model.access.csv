@@ -1,0 +1,4 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_product_labeling_product,access.product_labeling.product,model_product_labeling_product,base.group_user,1,1,1,1
+access_product_labeling_act,access.product_labeling.act,model_product_labeling_act,base.group_user,1,1,1,1
+access_product_labeling_expense_income,access.product_labeling.expense_income,model_product_labeling_expense_income,base.group_user,1,1,1,1
