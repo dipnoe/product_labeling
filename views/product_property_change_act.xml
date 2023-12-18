@@ -11,30 +11,39 @@
                 <form string="Act">
                     <header>
                         <button string="Confirm" type="object" name="confirm_create" class="button btn-success"/>
+                        <button string="Apply" type="object" name="apply_act" invisible="is_applied == True"
+                                class="button btn-add-record"/>
+                        <div>
+                            <p invisible="is_applied != True">Act was applied</p>
+                        </div>
                     </header>
                     <sheet>
                         <group>
-                            <field name="name"/>
+                            <field name="name" readonly="1"/>
                             <field name="create_date" readonly="1">Дата документа</field>
-                            <field name="status">Статус</field>
-                            <field name="last_destination">Применить для товаров со склада</field>
+                            <field name="state">Статус</field>
+                            <field name="last_destination"
+                                   required="state != 'purchase'">Применить для товаров со склада</field>
                             <field name="new_destination">Назначить новый склад</field>
                             <field name="product">Товар</field>
                             <field name="count">Количество</field>
+                            <field name="is_applied" invisible="1"/>
                         </group>
                     </sheet>
                     <sheet>
-                        <notebook>
-                            <page string="Expenses/Incomes">
-                                <field name="expense_income_ids">
-                                    <tree editable="bottom">
-                                        <field name="act_id" readonly="1"/>
-                                        <field name="direct_cost_item" widget="many2one"/>
-                                        <field name="sum"/>
-                                    </tree>
-                                </field>
-                            </page>
-                        </notebook>
+                        <group>
+                            <field name="expense_income_ids">
+                                <tree string="Expenses/Incomes" editable="bottom">
+                                    <field name="act_id" width="100" readonly="1"/>
+                                    <field name="promotion" width="100"/>
+                                    <field name="logistics_cost" width="100"/>
+                                    <field name="purchase_cost" width="100"/>
+                                    <field name="agency_commission" width="100"/>
+                                    <field name="sale" width="100"/>
+                                    <field name="sum" readonly="1" width="100"/>
+                                </tree>
+                            </field>
+                        </group>
                     </sheet>
                 </form>
             </field>
@@ -47,7 +56,7 @@
                 <tree string="Act">
                     <field name="name"/>
                     <field name="create_date" readonly="1"/>
-                    <field name="status"/>
+                    <field name="state"/>
                     <field name="last_destination"/>
                     <field name="new_destination"/>
                     <field name="product"/>
