@@ -15,4 +15,9 @@
               parent="menu_root"
               action="action_act_form"/>
 
+    <menuitem id="submenu_marked_products"
+              name="Marked Products"
+              parent="menu_root"
+              action="action_marked_product_form"/>
+
 </odoo>
