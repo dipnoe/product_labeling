@@ -26,9 +26,3 @@ class ExpenseIncome(models.Model):
             total_sum += record.sale or 0
             # Assign the total to the 'sum' field
             record.sum = total_sum
-
-    # @api.model
-    # def create(self, vals):
-    #     record = super(ExpenseIncome, self).create(vals)
-    #     record.act_id = record.act_id
-    #     return record
