@@ -12,17 +12,29 @@
                     <field name="product"/>
                     <field name="last_destination"/>
                     <field name="state"/>
+                    <field name="final_profit"/>
+                    <button string="Show Expenses/Incomes" type="object" name="action_show_expense_income"/>
                 </tree>
             </field>
         </record>
 
+        <record id="view_expense_income_tree" model="ir.ui.view">
+            <field name="name">product_labeling.expense_income.tree</field>
+            <field name="model">product_labeling.expense_income</field>
+            <field name="arch" type="xml">
+                <tree>
+                    <field name="create_date"/>
+                    <field name="operation"/>
+                    <field name="operation_costs"/>
+                </tree>
+            </field>
+        </record>
 
         <record id="action_marked_product_form" model="ir.actions.act_window">
             <field name="name">Маркированные Товары</field>
             <field name="res_model">product_labeling.marked_product</field>
             <field name="view_mode">tree</field>
         </record>
-
     </data>
 
 </odoo>
