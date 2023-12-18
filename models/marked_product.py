@@ -13,6 +13,10 @@ class MarkedProduct(models.Model):
         ('purchase', 'Purchase'),
         ('internal_movement', 'Internal movement')],
         string='Assigned status', required=True)
+    acts = fields.Many2many('product_labeling.act')
+    expense_incomes = fields.Many2many('product_labeling.expense_income', "ei_mp_rel")
+
+    final_profit = fields.Integer(string='Final profit')
 
     @api.model
     @api.depends('product')
@@ -21,3 +25,14 @@ class MarkedProduct(models.Model):
             product_record = self.env['product_labeling.product'].browse(vals['product'])
             vals['name'] = f'{product_record.name} #{generate_random_mark()}'
         return super(MarkedProduct, self).create(vals)
+
+    def action_show_expense_income(self):
+        self.ensure_one()
+        return {
+            'type': 'ir.actions.act_window',
+            'name': 'Expenses/Incomes',
+            'view_mode': 'tree,form',
+            'res_model': 'product_labeling.expense_income',
+            'domain': [('id', 'in', self.expense_incomes.ids)],
+            'context': {'default_marked_product_id': self.id},
+        }
