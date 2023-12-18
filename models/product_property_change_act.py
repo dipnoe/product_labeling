@@ -35,3 +35,19 @@ class ProductPropertyChangeAct(models.Model):
     def apply_act(self):
         for record in self:
             record.is_applied = True
+            if record.state == 'purchase':
+                for i in range(record.count):
+                    self.env['product_labeling.marked_product'].create({
+                        'last_destination': record.new_destination,
+                        'state': record.state,
+                        'product': record.product.id
+                    })
+            elif record.state in ['internal_movement', 'sale']:
+                marked_products = self.env['product_labeling.marked_product'].search([
+                    ('product', '=', record.product.id)
+                ])
+                for product in marked_products:
+                    product.write({
+                        'last_destination': record.new_destination,
+                        'state': record.state
+                    })
