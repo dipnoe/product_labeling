@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+
+    <data>
+
+        <record id="view_marked_product_tree" model="ir.ui.view">
+            <field name="name">product_labeling.marked_product.tree</field>
+            <field name="model">product_labeling.marked_product</field>
+            <field name="arch" type="xml">
+                <tree string="Marked Products">
+                    <field name="name"/>
+                    <field name="product"/>
+                    <field name="last_destination"/>
+                    <field name="state"/>
+                </tree>
+            </field>
+        </record>
+
+
+        <record id="action_marked_product_form" model="ir.actions.act_window">
+            <field name="name">Маркированные Товары</field>
+            <field name="res_model">product_labeling.marked_product</field>
+            <field name="view_mode">tree</field>
+        </record>
+
+    </data>
+
+</odoo>
