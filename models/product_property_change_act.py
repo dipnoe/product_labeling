@@ -5,10 +5,10 @@ class ProductPropertyChangeAct(models.Model):
     _name = 'product_labeling.act'
     _description = 'Act of Changing Product Properties'
 
-    name = fields.Char('Название акта', required=True)
-    last_destination = fields.Text(string='Last destination', required=True)
+    name = fields.Char('Название акта')
+    last_destination = fields.Text(string='Last destination')
     new_destination = fields.Text(string='New destination', required=True)
-    status = fields.Selection([
+    state = fields.Selection([
         ('sale', 'Sale'),
         ('purchase', 'Purchase'),
         ('internal_movement', 'Internal movement')],
@@ -16,6 +16,7 @@ class ProductPropertyChangeAct(models.Model):
     product = fields.Many2one('product_labeling.product', required=True)
     count = fields.Integer(string='Count', required=True)
     expense_income_ids = fields.One2many('product_labeling.expense_income', 'act_id', string="Expenses/Incomes")
+    is_applied = fields.Boolean(default=False, string='Is applied?')
 
     @api.model
     def create(self, vals):
@@ -31,3 +32,6 @@ class ProductPropertyChangeAct(models.Model):
     def confirm_create(self):
         return True
 
+    def apply_act(self):
+        for record in self:
+            record.is_applied = True
