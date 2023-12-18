@@ -1,5 +1,13 @@
 from odoo import models, fields, api
-from odoo.custom_addons.utils.mark_generate import generate_random_mark
+import random
+import string
+
+
+def generate_random_mark():
+    # Generating mark
+    mark = [''.join(random.choices(string.ascii_lowercase, k=5)) for i in range(3)]
+    return '-'.join(mark)
+
 
 
 class MarkedProduct(models.Model):
