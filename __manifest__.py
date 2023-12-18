@@ -7,6 +7,7 @@
         'views/menu.xml',
         'views/product_view.xml',
         'views/product_property_change_act.xml',
+        'views/marked_product_list.xml',
     ],
     'demo': [],
     'installable': True,
