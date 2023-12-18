@@ -5,24 +5,16 @@ class ExpenseIncome(models.Model):
     _name = 'product_labeling.expense_income'
     _description = 'Expense/Income'
 
-    act_id = fields.Many2one('product_labeling.act', string='Act')
-    promotion = fields.Integer('Product promotion, rubles')
-    logistics_cost = fields.Integer('Logistics, rubles')
-    purchase_cost = fields.Integer('Purchase cost, rubles')
-    agency_commission = fields.Integer('Agency commission, rubles')
-    sale = fields.Integer('Sale, rubles')
-    sum = fields.Integer(string='Sum, rubles', compute='_compute_sum')
+    act_id = fields.Many2one('product_labeling.act', string='Act', readonly=True)
+    operation = fields.Selection([
+        ('purchase_cost', 'Purchase'),
+        ('promotion', 'Promotion'),
+        ('logistics_cost', 'Logistics'),
+        ('agency_commission', 'Agency Commission'),
+        ('sale', 'Sale')
+        ])
+    operation_costs = fields.Integer(string='Operation Costs')
+    marked_products = fields.Many2many('product_labeling.marked_product', "ei_mp_rel")
 
     def confirm_create(self):
         return True
-
-    def _compute_sum(self):
-        for record in self:
-            total_sum = 0
-            total_sum -= record.promotion or 0
-            total_sum -= record.logistics_cost or 0
-            total_sum -= record.purchase_cost or 0
-            total_sum -= record.agency_commission or 0
-            total_sum += record.sale or 0
-            # Assign the total to the 'sum' field
-            record.sum = total_sum
