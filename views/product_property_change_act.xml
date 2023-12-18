@@ -34,13 +34,9 @@
                         <group>
                             <field name="expense_income_ids">
                                 <tree string="Expenses/Incomes" editable="bottom">
-                                    <field name="act_id" width="100" readonly="1"/>
-                                    <field name="promotion" width="100"/>
-                                    <field name="logistics_cost" width="100"/>
-                                    <field name="purchase_cost" width="100"/>
-                                    <field name="agency_commission" width="100"/>
-                                    <field name="sale" width="100"/>
-                                    <field name="sum" readonly="1" width="100"/>
+                                    <field name="act_id"/>
+                                    <field name="operation"/>
+                                    <field name="operation_costs"/>
                                 </tree>
                             </field>
                         </group>
@@ -61,6 +57,8 @@
                     <field name="new_destination"/>
                     <field name="product"/>
                     <field name="count"/>
+                    <field name="total"/>
+                    <field name="profit"/>
                 </tree>
             </field>
         </record>
